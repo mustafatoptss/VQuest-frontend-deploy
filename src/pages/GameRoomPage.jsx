@@ -147,9 +147,8 @@ export default function GameRoomPage() {
       setAiAnalysis(data.analysisText);
       toast.success('Yapay zeka performansını analiz etti!');
       // localStorage'a kaydet (AnalysisPage'de gösterilmek üzere)
-      const report = { _id: Date.now().toString(), analysisText: data.analysisText, createdAt: new Date().toISOString() };
-      const existing = JSON.parse(localStorage.getItem('vquest_ai_reports') || '[]');
-      localStorage.setItem('vquest_ai_reports', JSON.stringify([report, ...existing]));
+      const savedIds = JSON.parse(localStorage.getItem('vquest_ai_report_ids') || '[]');
+      localStorage.setItem('vquest_ai_report_ids', JSON.stringify([data._id, ...savedIds]));
     } catch (err) {
       console.error('AI error:', err);
     } finally {
