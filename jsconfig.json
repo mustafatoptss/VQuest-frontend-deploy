@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "preserve",
+    "forceConsistentCasingInFileNames": false
+  },
+  "exclude": ["node_modules"]
+}
