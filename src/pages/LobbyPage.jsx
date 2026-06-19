@@ -77,7 +77,7 @@ export default function LobbyPage() {
     }
   };
 
-  console.log('LobbyPage rendering:', { rooms, categories, packages, loading });
+
 
   const handleJoinByCode = async (e) => {
     e.preventDefault();

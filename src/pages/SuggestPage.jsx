@@ -15,9 +15,14 @@ export default function SuggestPage() {
   useEffect(() => {
     api.get('/categories')
       .then(res => {
-        setCategories(res.data);
-        if (res.data.length > 0) {
-          setForm(f => ({ ...f, category: res.data[0]._id }));
+        // Redis mongoId → _id normalizasyonu
+        const normalized = (Array.isArray(res.data) ? res.data : []).map(c => ({
+          ...c,
+          _id: c._id || c.mongoId || c.id,
+        }));
+        setCategories(normalized);
+        if (normalized.length > 0) {
+          setForm(f => ({ ...f, category: normalized[0]._id }));
         }
       })
       .catch(() => toast.error('Kategoriler yüklenemedi'));

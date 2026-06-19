@@ -54,11 +54,6 @@ export default function LoginPage() {
           Hesabın yok mu? <Link to="/register" style={{ fontWeight: 'bold' }}>Hemen Kayıt Ol</Link>
         </p>
 
-        <div style={{ marginTop: '2rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', fontSize: '0.8rem', textAlign: 'left' }}>
-          <p className="mb-1 text-muted"><strong>Admin Girişi:</strong></p>
-          <p>Email: admin@vquest.com</p>
-          <p>Şifre: admin123</p>
-        </div>
       </div>
     </div>
   );
