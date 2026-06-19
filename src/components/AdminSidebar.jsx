@@ -4,13 +4,13 @@ export const AdminSidebar = () => {
   const p = useLocation().pathname;
   
   const links = [
-    { name: 'Dashboard', path: '/admin', icon: '📊' },
-    { name: 'Kategoriler', path: '/admin/categories', icon: '🏷️' },
-    { name: 'Kullanıcılar', path: '/admin/users', icon: '👥' },
-    { name: 'Odalar', path: '/admin/rooms', icon: '🚪' },
-    { name: 'Duyurular', path: '/admin/notifications', icon: '📢' },
-    { name: 'AI Prompt', path: '/admin/ai-prompt', icon: '🤖' },
-    { name: 'Soru Önerileri', path: '/admin/suggestions', icon: '💡' }
+    { name: 'Dashboard', path: '/admin', icon: null },
+    { name: 'Kategoriler', path: '/admin/categories', icon: null },
+    { name: 'Kullanıcılar', path: '/admin/users', icon: null },
+    { name: 'Odalar', path: '/admin/rooms', icon: null },
+    { name: 'Duyurular', path: '/admin/notifications', icon: null },
+    { name: 'AI Prompt', path: '/admin/ai-prompt', icon: null },
+    { name: 'Soru Önerileri', path: '/admin/suggestions', icon: null }
   ];
 
   return (
@@ -23,14 +23,14 @@ export const AdminSidebar = () => {
       <nav>
         {links.map(l => (
           <Link key={l.path} to={l.path} className={`sidebar-link ${p === l.path ? 'active' : ''}`}>
-            <span>{l.icon}</span> {l.name}
+            {l.name}
           </Link>
         ))}
       </nav>
 
       <div style={{ marginTop: 'auto', padding: '1rem', borderTop: '1px solid var(--border)' }}>
         <Link to="/" className="btn btn-ghost btn-sm btn-full" style={{ justifyContent: 'center' }}>
-          ⬅️ Uygulamaya Dön
+          ← Uygulamaya Dön
         </Link>
       </div>
     </aside>

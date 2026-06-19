@@ -62,7 +62,7 @@ export default function App() {
     // Global bildirim dinleyici
     s.on('newNotification', (data) => {
       toast(data.message, {
-        icon: '🔔',
+        icon: 'ℹ️',
         duration: 5000,
         style: {
           borderLeft: '4px solid #6c47ff'

@@ -81,7 +81,7 @@ export default function NotificationsPage() {
 
       <div className="page-header flex-between">
         <div>
-          <h1 className="page-title">🔔 Bildirimler</h1>
+          <h1 className="page-title">Bildirimler</h1>
           <p className="page-subtitle">
             {unreadCount > 0 ? `${unreadCount} okunmamış bildirim` : 'Tüm bildirimler okundu'}
           </p>
@@ -95,7 +95,7 @@ export default function NotificationsPage() {
 
       {notifications.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-icon">🔕</div>
+          <div className="empty-icon" style={{fontSize:'2rem',color:'var(--primary-light)',fontWeight:800}}>!</div>
           <div className="empty-title">Burası şimdilik sessiz</div>
           <div className="empty-text">Sistem yöneticilerinden yeni bir bildirim gelmediğinde burayı görürsünüz.</div>
         </div>

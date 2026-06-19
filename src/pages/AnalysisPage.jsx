@@ -128,12 +128,12 @@ export default function AnalysisPage() {
       {/* Page Header */}
       <div className="page-header flex-between">
         <div>
-          <h1 className="page-title">🤖 AI Performans Analizi</h1>
+          <h1 className="page-title">AI Performans Analizi</h1>
           <p className="page-subtitle">Oyunlarından elde edilen verilerin yapay zeka değerlendirmesi</p>
         </div>
         {reports.length > 0 && (
           <button className="btn btn-danger btn-sm" onClick={clearAll} disabled={loading}>
-            🗑️ Tümünü Temizle
+            Tümünü Temizle
           </button>
         )}
       </div>
@@ -158,7 +158,7 @@ export default function AnalysisPage() {
               <span className="spinner" />
               Yapay Zeka Düşünüyor...
             </span>
-          ) : '✨ Analiz Başlat'}
+          ) : 'Analiz Başlat'}
         </button>
 
         <button
@@ -167,7 +167,7 @@ export default function AnalysisPage() {
           disabled={loading}
           style={{ padding: '0.75rem 1.5rem' }}
         >
-          🔄 Sonuçlarımı Yenile
+           Sonuçlarımı Yenile
         </button>
       </div>
 
@@ -204,7 +204,7 @@ export default function AnalysisPage() {
           }}
         >
           <div className="flex-between mb-2">
-            <h3 style={{ fontWeight: 700, color: 'var(--accent)' }}>🤖 AI Değerlendirmesi</h3>
+            <h3 style={{ fontWeight: 700, color: 'var(--accent)' }}>AI Değerlendirmesi</h3>
             <button
               className="btn btn-ghost btn-icon btn-sm"
               onClick={() => setSelectedReport(null)}
@@ -234,11 +234,11 @@ export default function AnalysisPage() {
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Toplam Analiz</div>
           </div>
           <div className="card" style={{ textAlign: 'center', padding: '1.2rem', background: 'rgba(0,229,255,0.08)', border: '1px solid rgba(0,229,255,0.3)' }}>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent)' }}>✅</div>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent)' }}>✓</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Güçlü Yönler</div>
           </div>
           <div className="card" style={{ textAlign: 'center', padding: '1.2rem', background: 'rgba(255,100,100,0.08)', border: '1px solid rgba(255,100,100,0.2)' }}>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ff6464' }}>📈</div>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ff6464' }}>↑</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Gelişim Alanları</div>
           </div>
         </div>
@@ -247,7 +247,7 @@ export default function AnalysisPage() {
       {/* Report list */}
       {!loading && reports.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-icon">🤖</div>
+          <div className="empty-icon" style={{fontSize:'2rem',color:'var(--primary-light)',fontWeight:800}}>AI</div>
           <div className="empty-title">Henüz Analiz Yok</div>
           <div className="empty-text">
             "Analiz Başlat" butonuna basarak yapay zekanın performansını değerlendirmesini sağlayın.
@@ -282,13 +282,13 @@ export default function AnalysisPage() {
                   className="btn btn-ghost btn-sm"
                   title="Tam raporu gör"
                   onClick={() => setSelectedReport(r)}
-                >👁️</button>
+                >Görüntüle</button>
                 <button
                   className="btn btn-danger btn-sm"
                   title="Sil"
                   disabled={deletingId === r._id}
                   onClick={() => deleteReport(r._id)}
-                >🗑️</button>
+                >Sil</button>
               </div>
             </div>
           ))}

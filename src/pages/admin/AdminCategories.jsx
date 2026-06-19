@@ -16,10 +16,8 @@ export default function AdminCategories() {
       const { data } = await api.get('/categories');
       setCategories(data);
     } catch {
-      setCategories([
-        { _id: '1', name: 'Yazılım', description: 'Programlama dili soruları' },
-        { _id: '2', name: 'Tarih', description: 'Dünya ve Türkiye tarihi' },
-      ]);
+      setCategories([]);
+      toast.error('Kategoriler yüklenemedi');
     } finally { setLoading(false); }
   };
 
@@ -54,11 +52,11 @@ export default function AdminCategories() {
     <div>
       <div className="page-header flex-between">
         <div>
-          <h1 className="page-title">🏷️ Kategori Yönetimi</h1>
+          <h1 className="page-title">Kategori Yönetimi</h1>
           <p className="page-subtitle">Soru kategorilerini düzenleyin</p>
         </div>
         <button className="btn btn-primary" onClick={() => { setForm({name:'', description:''}); setEditingId(null); setShowModal(true); }}>
-          ➕ Yeni Kategori
+          + Yeni Kategori
         </button>
       </div>
 
@@ -71,9 +69,9 @@ export default function AdminCategories() {
               <div className="flex-between mb-2">
                 <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--accent)' }}>{c.name}</h3>
                 <div style={{ display: 'flex', gap: '0.3rem' }}>
-                  <button className="btn btn-ghost btn-sm" title="Düzeyle" onClick={() => openEdit(c)}>✏️</button>
-                  <button className="btn btn-ghost btn-sm" title="Soruları Yönet" onClick={() => window.location.href=`/admin?category=${c.name}`}>👁️</button>
-                  <button className="btn btn-ghost btn-sm" title="Hızlı Soru Ekle" onClick={() => { setForm({ name: c.name, description: '' }); setEditingId(null); setShowModal(true); }}>➕</button>
+                  <button className="btn btn-ghost btn-sm" title="Düzeyle" onClick={() => openEdit(c)}>Düzenle</button>
+                  <button className="btn btn-ghost btn-sm" title="Soruları Yönet" onClick={() => window.location.href=`/admin?category=${c.name}`}>İncele</button>
+                  <button className="btn btn-ghost btn-sm" title="Hızlı Soru Ekle" onClick={() => { setForm({ name: c.name, description: '' }); setEditingId(null); setShowModal(true); }}>+</button>
                 </div>
               </div>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{c.description}</p>

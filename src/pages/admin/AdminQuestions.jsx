@@ -35,7 +35,7 @@ export default function AdminQuestions() {
         const { data } = await api.get('/admin/stats');
         setStats(data);
       } catch (err) {
-        console.error('Stats fetch error:', err);
+        // Silently handle error
       }
     };
     fetchStats();
@@ -109,7 +109,7 @@ export default function AdminQuestions() {
     <div>
       <div className="page-header flex-between mb-3">
         <div>
-          <h1 className="page-title">❓ Soru Havuzu ve Dashboard</h1>
+          <h1 className="page-title">Soru Havuzu ve Dashboard</h1>
           <p className="page-subtitle">Sistemin genel durumu ve ana soru havuzu</p>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -119,7 +119,7 @@ export default function AdminQuestions() {
             </button>
           )}
           <button className="btn btn-primary" onClick={() => { setForm({ text: '', options: ['','','',''], correctIndex: 0, category: filterCategory || 'Genel Kültür' }); setEditingId(null); setShowModal(true); }}>
-            ➕ Yeni Soru Ekle
+            + Yeni Soru Ekle
           </button>
         </div>
       </div>
@@ -127,22 +127,22 @@ export default function AdminQuestions() {
       {stats && (
         <div className="stats-grid mb-3">
           <div className="stat-card">
-            <div className="stat-icon">👥</div>
+            <div className="stat-icon" style={{fontSize:'1.5rem',color:'var(--primary-light)'}}>K</div>
             <div className="stat-value">{stats.users}</div>
             <div className="stat-label">Toplam Kullanıcı</div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">🚪</div>
+            <div className="stat-icon" style={{fontSize:'1.5rem',color:'var(--accent)'}}>O</div>
             <div className="stat-value">{stats.activeRooms}</div>
             <div className="stat-label">Aktif Odalar</div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">❓</div>
+            <div className="stat-icon" style={{fontSize:'1.5rem',color:'var(--warning)'}}>S</div>
             <div className="stat-value">{stats.totalQuestions}</div>
             <div className="stat-label">Soru Havuzu</div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">💡</div>
+            <div className="stat-icon" style={{fontSize:'1.5rem',color:'var(--success)'}}>Ö</div>
             <div className="stat-value">{stats.pendingSuggestions}</div>
             <div className="stat-label">Bekleyen Öneri</div>
           </div>
@@ -170,8 +170,8 @@ export default function AdminQuestions() {
                   <td><span className="text-success font-bold">{q.correctAnswer || q.options[q.correctIndex]}</span></td>
                   <td>
                     <div style={{ display: 'flex', gap: '0.4rem' }}>
-                      <button className="btn btn-ghost btn-sm" onClick={() => openEdit(q)}>✏️</button>
-                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(q._id)}>🗑️</button>
+                      <button className="btn btn-ghost btn-sm" onClick={() => openEdit(q)}>Düzenle</button>
+                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(q._id)}>Sil</button>
                     </div>
                   </td>
                 </tr>

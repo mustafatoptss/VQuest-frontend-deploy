@@ -41,7 +41,7 @@ export default function AdminAiPrompt() {
   return (
     <div style={{ maxWidth: 720 }}>
       <div className="page-header">
-        <h1 className="page-title">🤖 AI Prompt Ayarları</h1>
+        <h1 className="page-title">AI Prompt Ayarları</h1>
         <p className="page-subtitle">Analiz raporlarını üreten sistem komutunu (prompt) özelleştirin</p>
       </div>
 
@@ -59,7 +59,7 @@ export default function AdminAiPrompt() {
             />
           </div>
           <button className="btn btn-primary btn-full" type="submit" disabled={loading || promptText.trim().length <= 10}>
-            {loading ? <><span className="spinner" /> Kaydediliyor...</> : '💾 Promptu Kaydet ve Güncelle'}
+            {loading ? <><span className="spinner" /> Kaydediliyor...</> : 'Promptu Kaydet ve Güncelle'}
           </button>
         </form>
       </div>

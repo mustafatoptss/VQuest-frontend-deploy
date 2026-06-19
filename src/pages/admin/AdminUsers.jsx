@@ -11,12 +11,8 @@ export default function AdminUsers() {
       const { data } = await api.get('/admin/users');
       setUsers(data);
     } catch {
-      // Mock data
-      setUsers([
-        { _id: '1', username: 'ahmetkara', email: 'ahmet@mail.com', role: 'user', isBlocked: false, createdAt: new Date() },
-        { _id: '2', username: 'betulyilmaz', email: 'betul@mail.com', role: 'user', isBlocked: true, createdAt: new Date() },
-        { _id: '3', username: 'admin_test', email: 'admin@vquest.com', role: 'admin', isBlocked: false, createdAt: new Date() },
-      ]);
+      setUsers([]);
+      toast.error('Kullanıcılar yüklenemedi');
     } finally { setLoading(false); }
   };
 
@@ -35,7 +31,7 @@ export default function AdminUsers() {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">👥 Kullanıcı Yönetimi</h1>
+        <h1 className="page-title">Kullanıcı Yönetimi</h1>
         <p className="page-subtitle">Platformdaki tüm üyeleri incele ve yönet</p>
       </div>
 

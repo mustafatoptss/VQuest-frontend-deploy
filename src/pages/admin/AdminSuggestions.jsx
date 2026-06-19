@@ -13,9 +13,8 @@ export default function AdminSuggestions() {
       const { data } = await api.get('/admin/suggestions'); // Admin sees all
       setSuggestions(data);
     } catch {
-      setSuggestions([
-        { _id: '65f0123456789abcdef12345', questionText: 'Hata var: Gerçek data gelmedi. Backend kapalı olabilir.', options: ['Seçenek 1','Seçenek 2','Doğru Cevap','Yanlış'], correctAnswer: 'Doğru Cevap', category: { name: 'Bilinmiyor' }, user: { username: 'sistem' } }
-      ]);
+      setSuggestions([]);
+      toast.error('Öneriler yüklenemedi');
     } finally { setLoading(false); }
   };
 
@@ -37,7 +36,7 @@ export default function AdminSuggestions() {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">💡 Gelen Öneriler</h1>
+        <h1 className="page-title">Gelen Öneriler</h1>
         <p className="page-subtitle">Kullanıcıların önerdiği soruları onaylayın veya reddedin</p>
       </div>
 
@@ -45,7 +44,7 @@ export default function AdminSuggestions() {
         <div className="loading-center"><span className="spinner-lg spinner" /></div>
       ) : suggestions.length === 0 ? (
         <div className="empty-state">
-           <div className="empty-icon">✅</div>
+           <div className="empty-text">—</div>
            <div className="empty-title">Bekleyen öneri yok</div>
         </div>
       ) : (

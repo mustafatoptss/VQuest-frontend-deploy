@@ -52,7 +52,6 @@ export default function GameRoomPage() {
         setCurrentQuestion(roomQs[0]);
       }
     } catch (err) {
-       console.error('GameRoom fetchData error:', err);
        toast.error('Oda verisi alınamadı');
     } finally {
       setLoading(false);
@@ -150,7 +149,6 @@ export default function GameRoomPage() {
       const savedIds = JSON.parse(localStorage.getItem('vquest_ai_report_ids') || '[]');
       localStorage.setItem('vquest_ai_report_ids', JSON.stringify([data._id, ...savedIds]));
     } catch (err) {
-      console.error('AI error:', err);
     } finally {
       setAiLoading(false);
     }
@@ -202,7 +200,7 @@ export default function GameRoomPage() {
 
     // Doğru/yanlış gösterilmez — sadece "Cevabın alındı" bilgisi
     toast('Cevabın kaydedildi, süre dolana kadar bekle...', {
-      icon: '⏳',
+      icon: '⌛',
       duration: 2000,
     });
   };
@@ -216,14 +214,14 @@ export default function GameRoomPage() {
   if (phase === 'lobby') {
     return (
       <div className="card text-center" style={{ maxWidth: 600, margin: '2rem auto', padding: '3rem 2rem' }}>
-        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎮</div>
+        <div style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--primary-light)', fontWeight: 800 }}>VQ</div>
         <h1 className="page-title">Bekleme Odası</h1>
         <p className="text-muted mb-3">Diğer oyuncuların katılması bekleniyor... (Oda ID: {roomId})</p>
         <div style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
           <h4 style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Katılımcılar:</h4>
           {room?.participants?.map((p, i) => (
              <div key={i} className="badge badge-success" style={{ margin: '0.2rem' }}>
-               👤 {p.userId?.username || `Oyuncu ${i+1}`} {(p.userId?._id || p.userId?.id) === (user?.id || user?._id) && '(Sen)'}
+               {p.userId?.username || `Oyuncu ${i+1}`} {(p.userId?._id || p.userId?.id) === (user?.id || user?._id) && '(Sen)'}
              </div>
           ))}
         </div>
@@ -247,7 +245,7 @@ export default function GameRoomPage() {
   if (phase === 'result') {
     return (
       <div className="card text-center" style={{ maxWidth: 800, margin: '2rem auto', padding: '3rem 2rem' }}>
-        <h1 className="page-title mb-3">🏆 Skor Tablosu</h1>
+        <h1 className="page-title mb-3">Skor Tablosu</h1>
         <div className="table-wrap mb-2">
           <table className="table">
             <thead><tr><th>Sıralama</th><th>Oyuncu</th><th>Puan</th></tr></thead>
@@ -255,7 +253,7 @@ export default function GameRoomPage() {
               {room?.participants?.sort((a,b) => b.score - a.score).map((p, i) => (
                 <tr key={i} style={i===0 ? { background: 'rgba(255,215,0,0.1)' } : {}}>
                   <td style={{ fontSize: '1.2rem' }}>
-                    {i===0 ? '🥇' : i===1 ? '🥈' : i===2 ? '🥉' : `#${i+1}`}
+                    {i===0 ? <span style={{color:'#ffd700',fontWeight:800}}>#1</span> : i===1 ? <span style={{color:'#c0c0c0',fontWeight:800}}>#2</span> : i===2 ? <span style={{color:'#cd7f32',fontWeight:800}}>#3</span> : `#${i+1}`}
                   </td>
                   <td className="font-bold">{p.userId?.username || 'Oyuncu'}</td>
                   <td className="text-success font-bold">{p.score}</td>
@@ -271,7 +269,7 @@ export default function GameRoomPage() {
           </div>
         ) : aiAnalysis && (
           <div className="card mb-2 p-1" style={{ background: 'rgba(108,71,255,0.1)', border: '1px solid var(--primary)' }}>
-             <h4 style={{ color: 'var(--primary-light)', fontSize: '0.9rem', marginBottom: '0.5rem' }}>🤖 AI Değerlendirmesi</h4>
+             <h4 style={{ color: 'var(--primary-light)', fontSize: '0.9rem', marginBottom: '0.5rem' }}>AI Değerlendirmesi</h4>
              <p style={{ fontSize: '0.9rem', fontStyle: 'italic' }}>"{aiAnalysis}"</p>
           </div>
         )}
@@ -279,7 +277,7 @@ export default function GameRoomPage() {
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <button className="btn btn-ghost" onClick={() => nav('/')}>Odadan Çık</button>
           {(room?.hostId?._id || room?.hostId) === (user?.id || user?._id) && (
-            <button className="btn btn-danger" onClick={closeRoomSession}>⚠️ Odayı Kapat</button>
+            <button className="btn btn-danger" onClick={closeRoomSession}>Odayı Kapat</button>
           )}
         </div>
       </div>
@@ -309,7 +307,7 @@ export default function GameRoomPage() {
           {timeLeft}
         </div>
         <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-          {selectedAnswer !== null ? '✅ Cevap verildi' : '⏳ Bekleniyor'}
+          {selectedAnswer !== null ? 'Cevap verildi' : 'Bekleniyor'}
         </span>
       </div>
 
@@ -326,7 +324,7 @@ export default function GameRoomPage() {
           color: '#22c55e',
           letterSpacing: '0.02em',
         }}>
-          ✅ Doğru Cevap: {correctAnswerText}
+          Doğru Cevap: {correctAnswerText}
         </div>
       )}
 

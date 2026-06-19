@@ -26,7 +26,6 @@ export default function PackagesPage() {
       setPackages(Array.isArray(pRes.data) ? pRes.data : []);
       setQuestions(Array.isArray(qRes.data) ? qRes.data : []);
     } catch (err) {
-      console.error('Fetch data error:', err);
       setPackages([]);
       setQuestions([]);
     } finally { setLoading(false); }
@@ -77,11 +76,11 @@ export default function PackagesPage() {
     <div>
       <div className="page-header flex-between">
         <div>
-          <h1 className="page-title">📦 Soru Paketlerim</h1>
+          <h1 className="page-title">Soru Paketlerim</h1>
           <p className="page-subtitle">Kendi soru setlerini oluştur ve yönet</p>
         </div>
         {useAuthStore.getState().user?.role === 'admin' && (
-          <button className="btn btn-primary" onClick={() => setShowModal(true)}>➕ Yeni Paket</button>
+          <button className="btn btn-primary" onClick={() => setShowModal(true)}>+ Yeni Paket</button>
         )}
       </div>
 
@@ -89,7 +88,7 @@ export default function PackagesPage() {
         <div className="loading-center"><span className="spinner-lg spinner" /></div>
       ) : packages.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-icon">📦</div>
+          <div className="empty-icon" style={{fontSize:'2rem',color:'var(--primary-light)',fontWeight:800}}>P</div>
           <div className="empty-title">Henüz paketiniz yok</div>
           <div className="empty-text">Kendi soru setinizi oluşturun!</div>
         </div>
@@ -97,14 +96,14 @@ export default function PackagesPage() {
         <div className="grid-3">
           {packages.map(pkg => (
             <div key={pkg._id} className="card">
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📚</div>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem', color: 'var(--primary-light)', fontWeight: 800 }}>P</div>
               <h3 style={{ fontWeight: 700, marginBottom: '0.3rem' }}>{pkg.title}</h3>
               {pkg.description && <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '0.8rem' }}>{pkg.description}</p>}
               <div className="flex-between">
                 <span style={{ color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 600 }}>{pkg.questions?.length || 0} soru</span>
                 <div style={{ display: 'flex', gap: '0.4rem' }}>
                   { (useAuthStore.getState().user?._id === (pkg.creator?._id || pkg.creator) || useAuthStore.getState().user?.role === 'admin') && (
-                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(pkg._id)}>🗑️</button>
+                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(pkg._id)}>Sil</button>
                   )}
                 </div>
               </div>
@@ -117,7 +116,7 @@ export default function PackagesPage() {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
-              <h3 className="modal-title">➕ Yeni Paket Oluştur</h3>
+              <h3 className="modal-title">Yeni Paket Oluştur</h3>
               <button className="btn btn-ghost btn-icon" onClick={() => setShowModal(false)}>✕</button>
             </div>
             <form onSubmit={handleCreate}>

@@ -35,7 +35,7 @@ export default function AdminNotifications() {
     setLoading(true);
     try {
       const { data } = await api.post('/admin/notifications', { message });
-      toast.success('📢 Bildirim tüm kullanıcılara gönderildi!');
+      toast.success('Bildirim tüm kullanıcılara gönderildi!');
       setMessage('');
       // Prepend to history
       setHistory(prev => [data, ...prev]);
@@ -51,7 +51,7 @@ export default function AdminNotifications() {
   return (
     <div style={{ maxWidth: 720 }}>
       <div className="page-header">
-        <h1 className="page-title">📢 Bildirim Gönder</h1>
+        <h1 className="page-title">Bildirim Gönder</h1>
         <p className="page-subtitle">Sistemdeki tüm kullanıcılara anlık duyuru yapın</p>
       </div>
 
@@ -85,7 +85,7 @@ export default function AdminNotifications() {
           >
             {loading
               ? <><span className="spinner" /> Gönderiliyor...</>
-              : '📢 Tüm Kullanıcılara Gönder'}
+              : 'Tüm Kullanıcılara Gönder'}
           </button>
         </form>
       </div>
@@ -97,13 +97,13 @@ export default function AdminNotifications() {
       {/* History Table */}
       <div className="card">
         <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary-light)' }}>
-          📋 Geçmiş Duyurular
+          Geçmiş Duyurular
         </h3>
         {historyLoading ? (
           <div className="loading-center"><span className="spinner" /></div>
         ) : history.length === 0 ? (
           <div className="empty-state" style={{ padding: '1.5rem 0' }}>
-            <div className="empty-icon" style={{ fontSize: '2rem' }}>📭</div>
+            <div className="empty-text" style={{ color: 'var(--text-muted)' }}>—</div>
             <div className="empty-text">Henüz gönderilmiş bildirim yok</div>
           </div>
         ) : (

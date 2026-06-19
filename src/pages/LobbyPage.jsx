@@ -50,7 +50,6 @@ export default function LobbyPage() {
         setForm(f => ({ ...f, category: sCats[0].name }));
       }
     } catch (err) {
-      console.error('Fetch data error:', err);
       setRooms([]);
       setCategories([]);
       setPackages([]);
@@ -73,7 +72,6 @@ export default function LobbyPage() {
     } catch (err) {
       const msg = err.response?.data?.message || 'Oda oluşturulamadı';
       toast.error(msg);
-      console.error('Room creation error:', err.response?.data);
     }
   };
 
@@ -115,21 +113,21 @@ export default function LobbyPage() {
     <div>
       <div className="page-header flex-between mb-3">
         <div>
-          <h1 className="page-title">🎮 Oyun Lobisi</h1>
+          <h1 className="page-title">Oyun Lobisi</h1>
           <p className="page-subtitle">Aktif odalara katıl veya kendi odanı kur</p>
         </div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <form onSubmit={handleJoinByCode} style={{ display: 'flex', gap: '0.5rem' }}>
             <input 
               className="form-input" 
-              placeholder="📌 Oda Kodu" 
+              placeholder="Oda Kodu" 
               style={{ width: '120px', padding: '0.5rem' }} 
               value={joinCodeInput} 
               onChange={e => setJoinCodeInput(e.target.value)} 
             />
             <button type="submit" className="btn btn-ghost btn-sm">Katıl</button>
           </form>
-          <button className="btn btn-primary btn-lg" onClick={() => setShowModal(true)}>➕ Oda Kur</button>
+          <button className="btn btn-primary btn-lg" onClick={() => setShowModal(true)}>+ Oda Kur</button>
         </div>
       </div>
 
@@ -147,7 +145,7 @@ export default function LobbyPage() {
                 </div>
                 <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
                    <span className="badge badge-info">{r.category}</span>
-                   <span className="badge badge-primary">👥 {r.participants?.length || 0}/{r.maxParticipants}</span>
+                   <span className="badge badge-primary">{r.participants?.length || 0}/{r.maxParticipants}</span>
                 </div>
                 <button 
                   className="btn btn-primary btn-full" 
@@ -181,14 +179,14 @@ export default function LobbyPage() {
                     className={`tab ${form.sourceType === 'ready' ? 'active' : ''}`} 
                     onClick={() => setForm({...form, sourceType: 'ready', newQuestions: []})}
                   >
-                    📚 Hazır Soru Paketi
+                    Hazır Soru Paketi
                   </button>
                   <button 
                     type="button" 
                     className={`tab ${form.sourceType === 'custom' ? 'active' : ''}`} 
                     onClick={() => setForm({...form, sourceType: 'custom', packageId: ''})}
                   >
-                    ✍️ Özel Soru Oluştur
+                    Özel Soru Oluştur
                   </button>
                 </div>
 

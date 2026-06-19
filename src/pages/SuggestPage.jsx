@@ -65,7 +65,7 @@ export default function SuggestPage() {
   return (
     <div style={{ maxWidth: 640, margin: '0 auto' }}>
       <div className="page-header">
-        <h1 className="page-title">💡 Soru Öner</h1>
+        <h1 className="page-title">Soru Öner</h1>
         <p className="page-subtitle">VQuest havuzuna yeni sorular kazandırın</p>
       </div>
 
@@ -120,7 +120,7 @@ export default function SuggestPage() {
           </div>
 
           <button className="btn btn-primary btn-full btn-lg" type="submit" disabled={loading}>
-            {loading ? <><span className="spinner" /> Gönderiliyor...</> : '📤 Öneriyi Gönder'}
+            {loading ? <><span className="spinner" /> Gönderiliyor...</> : 'Öneriyi Gönder'}
           </button>
         </form>
       </div>
