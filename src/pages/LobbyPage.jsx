@@ -46,9 +46,12 @@ export default function LobbyPage() {
         : [];
       setPackages(filteredPkgs);
       
-      if (Array.isArray(sCats) && sCats.length > 0 && !form.category && !form.packageId) {
-        setForm(f => ({ ...f, category: sCats[0].name }));
-      }
+      setForm(f => {
+        if (Array.isArray(sCats) && sCats.length > 0 && !f.category && !f.packageId) {
+          return { ...f, category: sCats[0].name };
+        }
+        return f;
+      });
     } catch (err) {
       setRooms([]);
       setCategories([]);
@@ -191,10 +194,11 @@ export default function LobbyPage() {
                 </div>
 
                 {form.sourceType === 'ready' ? (
-                  <select className="form-input" value={form.packageId ? `pkg:${form.packageId}` : `cat:${form.category}`} onChange={e => {
+                  <select className="form-input" value={form.packageId ? `pkg:${form.packageId}` : form.category ? `cat:${form.category}` : ''} onChange={e => {
                     const [type, val] = e.target.value.split(':');
-                    if (type === 'pkg') setForm({ ...form, packageId: val, category: '' });
-                    else setForm({ ...form, category: val, packageId: '' });
+                    if (type === 'pkg') setForm(f => ({ ...f, packageId: val, category: '' }));
+                    else if (type === 'cat') setForm(f => ({ ...f, category: val, packageId: '' }));
+                    else setForm(f => ({ ...f, category: '', packageId: '' }));
                   }}>
                     <option value="">-- Hazır Paket Seçin --</option>
                     <optgroup label="Soru Paketleri (Kategoriler)">
